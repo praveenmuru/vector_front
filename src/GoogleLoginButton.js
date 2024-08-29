@@ -1,33 +1,46 @@
 import React, { useState } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
 
-
+// Styles for the button and container
 const buttonStyle = {
-  padding: '10px 20px',
-  fontSize: '16px',
-  cursor: 'pointer',
+    padding: '10px 20px',
+    fontSize: '16px',
+    cursor: 'pointer',
 };
 
-function GoogleLoginButton() {
-const [userName, setUserName] = useState('');
-const navigate = useNavigate();
-const handleSuccess = (credentialResponse) => {
-    const userObject = jwtDecode(credentialResponse.credential);
-    setUserName(userObject.name);
-    navigate(`/dashboard?name=${encodeURIComponent(userObject.name)}`);
+const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh', // Adjust as needed
+};
 
-  };
-  const handleError = () => {
-    console.log('Login Failed');
-  };
-  return (
-    <GoogleLogin
-    onSuccess={handleSuccess}
-    onError={handleError}
-  />
-  );
+// Component for the Google Login button
+function GoogleLoginButton() {
+    const [, setUserName] = useState('');
+
+    // Handle successful login
+    const handleSuccess = (credentialResponse) => {
+        const userObject = jwtDecode(credentialResponse.credential);
+        setUserName(userObject.name);
+    };
+
+    // Handle login error
+    const handleError = () => {
+        console.log('Login Failed');
+    };
+
+    return (
+        <div style={containerStyle}>
+            {/* Google Login button */}
+            <GoogleLogin
+                style={buttonStyle}
+                onSuccess={handleSuccess}
+                onError={handleError}
+            />
+        </div>
+    );
 }
 
 export default GoogleLoginButton;

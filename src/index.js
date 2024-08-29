@@ -20,8 +20,6 @@ const msalInstance = new PublicClientApplication(msalConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <GoogleOAuthProvider clientId="459264971772-1e0c1c2j6ldjrp8fe9t0s2neihe4vlpf.apps.googleusercontent.com">
-   
         <App />
-     
   </GoogleOAuthProvider>
 );
