@@ -4,6 +4,8 @@ import App from './App';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
+// import { dotenv } from 'dotenv';
+
 
 const msalConfig = {
   auth: {
