@@ -1,36 +1,30 @@
 import React, { useState } from 'react';
-import { useMsal } from '@azure/msal-react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import GoogleLoginButton from './GoogleLoginButton';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
 
 const padding20 = {
   padding: '20px',
 };
 
 const App = () => {
-  useMsal();
-
-  // State for storing the user name
-  const [userName] = useState('');
+  const [userName, setUserName] = useState('');
 
   return (
     <div className="App">
-      {/* Header component */}
       <Header />
-
       <div style={padding20}>
-        {/* Google Login Button component */}
-        <GoogleLoginButton />
-
-        {/* Display the user name if available */}
-        {userName && <h3>Welcome, {userName}!</h3>}
+        <Routes>
+          <Route path="/" element={<Login setUserName={setUserName} />} />
+          <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
+        </Routes>
       </div>
-
-      {/* Footer component */}
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
