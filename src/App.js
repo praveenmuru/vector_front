@@ -39,7 +39,7 @@ const App = () => {
         onSuccess={handleSuccess}
         onError={handleError}
       />
-            <button onClick={handleMicrosoftLogin}>Login with Microsoft</button>
+            {/* <button onClick={handleMicrosoftLogin}>Login with Microsoft</button> */}
 
       {userName && <h3>Welcome, {userName}!</h3>}
     </div>
