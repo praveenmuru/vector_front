@@ -39,8 +39,8 @@ function Login({ setUserName }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       {/* Your login form here */}
-      <GoogleOAuthProvider
-        clientId="459264971772-1e0c1c2j6ldjrp8fe9t0s2neihe4vlpf.apps.googleusercontent.com"
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+
         style={{ textAlign: 'center' }} // Add this style prop
       >
         <GoogleLogin
