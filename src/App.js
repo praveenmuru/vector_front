@@ -6,8 +6,10 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 
-const padding20 = {
-  padding: '20px',
+const body = {
+  height: '600px',
+  display: 'flex',
+  alignItems: 'center',
 };
 
 const App = () => {
@@ -16,7 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <div style={padding20}>
+      <div style={body}>
         <Routes>
           <Route path="/" element={<Login setUserName={setUserName} />} />
           <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
