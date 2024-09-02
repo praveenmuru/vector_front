@@ -1,5 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import './Sidebar.css';
+
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -10,8 +13,11 @@ function Dashboard() {
   const name = query.get('name');
 
   return (
-    <div>
-      <h1>Welcome to the Dashboard, {name}!</h1>
+    <div className="dashboard-container">
+      <Sidebar />
+      <div className="dashboard-content">
+        <h1>Welcome to the Dashboard, {name}!</h1>
+      </div>
     </div>
   );
 }

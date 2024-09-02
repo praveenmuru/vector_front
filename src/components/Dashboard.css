@@ -1,0 +1,9 @@
+.dashboard-container {
+    display: flex;
+}
+
+.dashboard-content {
+    margin-left: 220px;
+    /* Adjust according to the sidebar width */
+    padding: 20px;
+}
