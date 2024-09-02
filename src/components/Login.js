@@ -9,22 +9,16 @@ function Login({ setUserName }) {
   const navigate = useNavigate();
 
   // Simulate successful login (you'll replace this with actual Google OAuth logic)
-  const handleLogin = () => {
-    // Perform login logic (e.g., get access token)
-    // ...
+  const handleError = () => {
+    console.log('Login Failed');
 
-    // Set user name (simulate login)
-    setUserName('User Name');
-
-    // Redirect to the dashboard
-    navigate('/dashboard');
   };
 
   const handleSuccess = (credentialResponse) => {
     const userObject = jwtDecode(credentialResponse.credential);
     setUserName(userObject.name);
     console.log(userObject.name);
-    navigate('/dashboard');
+    navigate('/dashboard', { state: { userName: userObject.name } });
 
 };
 
@@ -45,13 +39,13 @@ function Login({ setUserName }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       {/* Your login form here */}
-      <GoogleOAuthProvider
-        clientId="459264971772-1e0c1c2j6ldjrp8fe9t0s2neihe4vlpf.apps.googleusercontent.com"
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+
         style={{ textAlign: 'center' }} // Add this style prop
       >
         <GoogleLogin
           onSuccess={handleSuccess}
-          onFailure={handleLogin}
+          onFailure={handleError}
           cookiePolicy={'single_host_origin'}
           style={buttonStyle}
         />
