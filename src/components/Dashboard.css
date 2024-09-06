@@ -1,9 +1,13 @@
 .dashboard-container {
     display: flex;
+    align-items: center;
 }
 
 .dashboard-content {
-    margin-left: 220px;
-    /* Adjust according to the sidebar width */
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    margin-left: 200px;
 }

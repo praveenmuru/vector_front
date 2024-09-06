@@ -5,6 +5,8 @@ import Footer from './Footer';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import Sidebar from './components/Sidebar';
+import Projects from './components/Projects';
 
 const body = {
   height: '600px',
@@ -22,8 +24,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login setUserName={setUserName} />} />
           <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
+          <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
         </Routes>
       </div>
+      {userName && <Sidebar />} {/* Conditionally render Sidebar */}
       <Footer />
     </div>
   );
