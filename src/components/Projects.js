@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import './Sidebar.css';
 import './Projects.css';
@@ -8,7 +9,9 @@ const Projects = () => {
             <Sidebar />
             <h1>Projects</h1>
             <div className="actions">
-                <button>Add</button>
+                <Link to="/create-project">
+                    <button>Add</button>
+                </Link>
             </div>
         </div>
     );
