@@ -1,18 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container h1 {
     text-align: center;
 }
 
 .actions {
     position: absolute;
-    top: 120px;
-    right: 15px;
+    top: 140px;
+    right: 50px;
 }
 
 .actions button {
 
-    padding: 10px 20px;
+    padding: 10px 25px;
+    font-family: Poppins, sans-serif;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #6A0DAD;
     color: white;
     border-radius: 4px;
     border: none;
@@ -20,5 +27,5 @@
 }
 
 .actions button:hover {
-    background-color: #006adc;
+    background-color: #550f88;
 }

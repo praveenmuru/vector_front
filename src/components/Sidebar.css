@@ -1,13 +1,13 @@
 .sidebar {
     width: 130px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    top: 130px;
+    top: 120px;
     left: 10px;
-    position: fixed;
+    position: absolute;
 }
 
 .sidebar ul {
@@ -23,4 +23,9 @@
 .sidebar ul li a {
     text-decoration: none;
     color: black;
+}
+
+.sidebar ul li a:hover {
+    color: white;
+    background-color: #6A0DAD;
 }
