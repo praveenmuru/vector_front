@@ -37,3 +37,8 @@ html, body, #root {
   flex: 1;
   padding: 20px;
 }
+
+
+.main-content{
+  background-color: #dddddd;
+}

@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -8,34 +8,36 @@ import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import Workboard from './components/Workboard';
 import CreateTask from './components/CreateTask';
-import Projects from './components/Projects'; // Import the Projects component
-import CreateProject from './components/CreateProject'; // Import the CreateProject component
-import './App.css'; // Import the global CSS file
-
-const addTask = (task) => {
-  // Define the addTask function
-  console.log('Task added:', task);
-};
+import Projects from './components/Projects';
+import CreateProject from './components/CreateProject';
+import Sidebar from './components/Sidebar';
+import './App.css';
 
 const App = () => {
   const [userName, setUserName] = useState('');
 
+  useEffect(() => {
+    const storedUserName = sessionStorage.getItem('username');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
+
   return (
     <div className="App">
       <Header />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Routes>
-          <Route path="/" element={<Login setUserName={setUserName} />} />
-          <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
-          <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
-          <Route path="/create-project" element={<CreateProject />} />
-          <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
-          <Route path="/create-task" element={<CreateTask addTask={addTask} />} />
-        </Routes>
-        {userName} {/* Conditionally render Sidebar */}
-
+      <div className="main-content">
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Login setUserName={setUserName} />} />
+            <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
+            <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
+            <Route path="/create-project" element={<CreateProject />} />
+            <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
+            <Route path="/create-task" element={<CreateTask />} />
+          </Routes>
+        </div>
       </div>
-
       <Footer />
     </div>
   );
