@@ -1,49 +1,39 @@
 import React, { useState } from 'react';
-import { GoogleLogin } from '@react-oauth/google';
-import { useMsal } from '@azure/msal-react';
-import { jwtDecode } from 'jwt-decode';
+import { Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import './App.css';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
+import Sidebar from './components/Sidebar';
+import Projects from './components/Projects';
+import CreateProject from './components/CreateProject';
 
+const body = {
+  height: '600px',
+  display: 'flex',
+  alignItems: 'center',
+};
 
 const App = () => {
-  const { instance } = useMsal();
   const [userName, setUserName] = useState('');
-
-
-
-  const handleSuccess = (credentialResponse) => {
-    const userObject = jwtDecode(credentialResponse.credential);
-    setUserName(userObject.name);
-  };
-
-  const handleError = () => {
-    console.log('Login Failed');
-  };
-
-  const handleMicrosoftLogin = () => {
-    instance.loginPopup({
-      scopes: ["user.read"],
-      prompt: "select_account"
-    }).then(response => {
-      console.log('Microsoft login success:', response);
-      // Handle Microsoft login success
-    }).catch(error => {
-      console.error('Microsoft login error:', error);
-      // Handle Microsoft login error
-    });
-  };
 
   return (
     <div className="App">
-      <h2>React Google Sign-In</h2>
-      <GoogleLogin
-        onSuccess={handleSuccess}
-        onError={handleError}
-      />
-            {/* <button onClick={handleMicrosoftLogin}>Login with Microsoft</button> */}
-
-      {userName && <h3>Welcome, {userName}!</h3>}
+      <Header />
+      <div style={body}>
+        <Routes>
+          <Route path="/" element={<Login setUserName={setUserName} />} />
+          <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
+          <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
+          <Route path="/create-project" element={<CreateProject />} />
+        </Routes>
+      </div>
+      {userName && <Sidebar />} {/* Conditionally render Sidebar */}
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
