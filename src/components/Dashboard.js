@@ -14,7 +14,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="dashboard-content">
         <h1>Welcome to the Dashboard, {name}!</h1>
       </div>

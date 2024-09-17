@@ -27,6 +27,7 @@ const App = () => {
     <div className="App">
       <Header />
       <div className="main-content">
+        {userName && <Sidebar />}
         <div className="content">
           <Routes>
             <Route path="/" element={<Login setUserName={setUserName} />} />
