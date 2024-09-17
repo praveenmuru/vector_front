@@ -2,7 +2,7 @@ import React from 'react';
 
 // Define the style for the header
 const headerStyle = {
-  backgroundColor: '#6A0DAD',
+  backgroundColor: '#006ed7',
   color: 'white',
   padding: '10px',
   textAlign: 'center',
