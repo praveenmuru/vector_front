@@ -23,6 +23,7 @@
 .sidebar ul li a {
     text-decoration: none;
     color: black;
+    padding: 3px;
 }
 
 .sidebar ul li a:hover {
