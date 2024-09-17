@@ -1,36 +1,43 @@
-import React, { useState } from 'react';
+// src/App.js
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import './App.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
-import Sidebar from './components/Sidebar';
+import Workboard from './components/Workboard';
+import CreateTask from './components/CreateTask';
 import Projects from './components/Projects';
 import CreateProject from './components/CreateProject';
-
-const body = {
-  height: '600px',
-  display: 'flex',
-  alignItems: 'center',
-};
+import Sidebar from './components/Sidebar';
+import './App.css';
 
 const App = () => {
   const [userName, setUserName] = useState('');
 
+  useEffect(() => {
+    const storedUserName = sessionStorage.getItem('username');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
+
   return (
     <div className="App">
       <Header />
-      <div style={body}>
-        <Routes>
-          <Route path="/" element={<Login setUserName={setUserName} />} />
-          <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
-          <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
-          <Route path="/create-project" element={<CreateProject />} />
-        </Routes>
+      <div className="main-content">
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Login setUserName={setUserName} />} />
+            <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
+            <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
+            <Route path="/create-project" element={<CreateProject />} />
+            <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
+            <Route path="/create-task" element={<CreateTask />} />
+          </Routes>
+        </div>
       </div>
-      {userName && <Sidebar />} {/* Conditionally render Sidebar */}
       <Footer />
     </div>
   );
