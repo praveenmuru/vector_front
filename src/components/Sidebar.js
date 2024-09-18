@@ -1,33 +1,65 @@
 // src/components/Sidebar.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-const sidebarStyle = {
-    // position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '15%',
-    maxHeight: '1000vh', // Changed to 100vh to fit the body
-    backgroundColor: '#006ed7', // Same color as header and footer
-    padding: '10px',
-    boxShadow: '2px 0 5px rgba(0,0,0,0.1)',
-    zIndex: '900', // Lower z-index than header and footer
-    fontWeight: 'bold'
-};
-
-const linkStyle = {
-    color: 'white',
-    textDecoration: 'none',
-    display: 'block',
-    padding: '10px 0'
-};
 
 const Sidebar = () => {
+    const [hoveredLink, setHoveredLink] = useState(null);
+
+    const sidebarStyle = {
+        padding: '10px',
+        backgroundColor: '#f4f4f4',
+        height: '100vh',
+        width: '15%',
+    };
+
+    const linkStyle = {
+        display: 'block',
+        padding: '10px',
+        textDecoration: 'none',
+        color: '#000',
+        marginBottom: '10px',
+    };
+
+    const hoverStyle = {
+        ...linkStyle,
+        backgroundColor: '#006ed7',
+        color: 'white',
+    };
+
     return (
         <div style={sidebarStyle}>
-            <Link to="/dashboard" style={linkStyle}>Dashboard</Link>
-            <Link to="/projects" style={linkStyle}>Projects</Link>
-            <Link to="/workboard" style={linkStyle}>Workboard</Link>
-            <Link to="/create-task" style={linkStyle}>Create Task</Link>
+            <Link
+                to="/dashboard"
+                style={hoveredLink === 'dashboard' ? hoverStyle : linkStyle}
+                onMouseEnter={() => setHoveredLink('dashboard')}
+                onMouseLeave={() => setHoveredLink(null)}
+            >
+                Dashboard
+            </Link>
+            <Link
+                to="/projects"
+                style={hoveredLink === 'projects' ? hoverStyle : linkStyle}
+                onMouseEnter={() => setHoveredLink('projects')}
+                onMouseLeave={() => setHoveredLink(null)}
+            >
+                Projects
+            </Link>
+            <Link
+                to="/workboard"
+                style={hoveredLink === 'workboard' ? hoverStyle : linkStyle}
+                onMouseEnter={() => setHoveredLink('workboard')}
+                onMouseLeave={() => setHoveredLink(null)}
+            >
+                Workboard
+            </Link>
+            <Link
+                to="/create-task"
+                style={hoveredLink === 'create-task' ? hoverStyle : linkStyle}
+                onMouseEnter={() => setHoveredLink('create-task')}
+                onMouseLeave={() => setHoveredLink(null)}
+            >
+                Create Task
+            </Link>
         </div>
     );
 };

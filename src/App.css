@@ -1,6 +1,8 @@
 /* src/index.css or src/App.css */
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -12,7 +14,8 @@ html, body, #root {
   height: 100vh;
 }
 
-.header, .footer {
+.header,
+.footer {
   background-color: #006ed7;
   color: white;
   padding: 10px;
@@ -29,7 +32,7 @@ html, body, #root {
   background-color: #006ed7;
   color: white;
   padding: 10px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 900;
 }
 
@@ -39,6 +42,6 @@ html, body, #root {
 }
 
 
-.main-content{
-  background-color: #dddddd;
+.main-content {
+  background-color: #ffffff;
 }

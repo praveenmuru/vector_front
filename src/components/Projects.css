@@ -17,5 +17,65 @@
 }
 
 .actions button:hover {
-    background-color: #0257a7;
+    background-color: #0061bb;
+}
+
+.projects-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 80px;
+}
+
+.projects-table th,
+.projects-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.projects-table th {
+    background-color: #f4f4f4;
+}
+
+button.view,
+view {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.view:hover,
+.view:hover {
+    background-color: #45a049;
+}
+
+button.edit {
+    margin-left: 5px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.edit:hover {
+    background-color: #007bb5;
+}
+
+button.delete {
+    margin-left: 5px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.delete:hover {
+    background-color: #da190b;
 }
