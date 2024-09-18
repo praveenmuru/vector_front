@@ -1,13 +1,12 @@
 // src/components/Sidebar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const sidebarStyle = {
     // position: 'fixed',
     top: 0,
     left: 0,
-    width: '20%',
-    height: '100vh', // Changed to 100vh to fit the body
+    width: '15%',
+    maxHeight: '1000vh', // Changed to 100vh to fit the body
     backgroundColor: '#006ed7', // Same color as header and footer
     padding: '10px',
     boxShadow: '2px 0 5px rgba(0,0,0,0.1)',
