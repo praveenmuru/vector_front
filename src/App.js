@@ -6,11 +6,11 @@ import Footer from './Footer';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import Sidebar from './components/Sidebar';
 import Workboard from './components/Workboard';
 import CreateTask from './components/CreateTask';
 import Projects from './components/Projects';
-import CreateProject from './components/CreateProject';
-import Sidebar from './components/Sidebar';
+import ViewProject from './components/ViewProject';
 import './App.css';
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
             <Route path="/" element={<Login setUserName={setUserName} />} />
             <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
             <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
-            <Route path="/create-project" element={<CreateProject />} />
+            <Route path="/projects/view-project" element={<PrivateRoute userName={userName} component={ViewProject} />} />
             <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
             <Route path="/create-task" element={<CreateTask />} />
           </Routes>

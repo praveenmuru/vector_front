@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUpload } from 'react-icons/fa';
+import CurrencyInput from 'react-currency-input-field';
 import './CreateProject.css';
 
 const CreateProject = ({ addProject }) => {
@@ -39,7 +40,9 @@ const CreateProject = ({ addProject }) => {
         const { name, value } = e.target;
         setNewProject({ ...newProject, [name]: value });
     };
-
+    const handleCurrencyChange = (value, name) => {
+        setNewProject({ ...newProject, [name]: value });
+    };
     const handleFileChange = (e) => {
         setNewProject({ ...newProject, documentation: e.target.files[0] });
     };
@@ -75,6 +78,7 @@ const CreateProject = ({ addProject }) => {
                     <input
                         type="text"
                         id="projectName"
+                        name="projectName"
                         value={newProject.projectName}
                         onChange={handleInputChange}
                         required
@@ -84,6 +88,7 @@ const CreateProject = ({ addProject }) => {
                     <label htmlFor="description">Project Description:</label>
                     <textarea
                         id="description"
+                        name="description"
                         value={newProject.description}
                         onChange={handleInputChange}
                         required
@@ -94,6 +99,7 @@ const CreateProject = ({ addProject }) => {
                     <input
                         type="text"
                         id="projectManager"
+                        name="projectManager"
                         value={newProject.projectManager}
                         onChange={handleInputChange}
                         required
@@ -104,6 +110,7 @@ const CreateProject = ({ addProject }) => {
                     <input
                         type="date"
                         id="startDate"
+                        name="startDate"
                         value={newProject.startDate}
                         onChange={handleInputChange}
                         required
@@ -114,6 +121,7 @@ const CreateProject = ({ addProject }) => {
                     <input
                         type="date"
                         id="endDate"
+                        name="endDate"
                         value={newProject.endDate}
                         onChange={handleInputChange}
                         required
@@ -126,6 +134,7 @@ const CreateProject = ({ addProject }) => {
                     <input
                         type="text"
                         id="teamMembers"
+                        name="teamMembers"
                         value={newProject.teamMembers}
                         onChange={handleInputChange}
                         required
@@ -135,6 +144,7 @@ const CreateProject = ({ addProject }) => {
                     <label htmlFor="rolesResponsibilities">Roles and Responsibilities:</label>
                     <textarea
                         id="rolesResponsibilities"
+                        name="rolesResponsibilities"
                         value={newProject.rolesResponsibilities}
                         onChange={handleInputChange}
                         required
@@ -144,11 +154,13 @@ const CreateProject = ({ addProject }) => {
                 <h2>Resources</h2>
                 <div className="form-group">
                     <label htmlFor="budget">Budget:</label>
-                    <input
-                        type="number"
+                    <CurrencyInput
                         id="budget"
+                        name="budget"
                         value={newProject.budget}
-                        onChange={handleInputChange}
+                        decimalsLimit={2}
+                        prefix="$"
+                        onValueChange={(value, name) => handleCurrencyChange(value, name)}
                         required
                     />
                 </div>
@@ -157,6 +169,7 @@ const CreateProject = ({ addProject }) => {
                     <input
                         type="text"
                         id="toolsTechnologies"
+                        name="toolsTechnologies"
                         value={newProject.toolsTechnologies}
                         onChange={handleInputChange}
                         required

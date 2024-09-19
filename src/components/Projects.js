@@ -32,6 +32,7 @@ const Projects = () => {
     fetchProjects();
   }, []);
   const navigate = useNavigate();
+
   const handleAddProject = () => {
     navigate('/create-project');
   };
@@ -63,7 +64,10 @@ const Projects = () => {
                 <td>{project.startDate}</td>
                 <td>{project.endDate}</td>
                 <td>
-                  <button className="view">View</button>
+                  <button className="view"
+                    onClick={() => navigate(`/projects/view-project`)}>
+                    View
+                  </button>
                   <button className="edit">Edit</button>
                   <button className="delete">Delete</button>
                 </td>
