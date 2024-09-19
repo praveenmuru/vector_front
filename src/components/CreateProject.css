@@ -2,9 +2,10 @@
     max-width: 50%;
     margin: 0 auto;
     padding: 20px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 8px;
     background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.305);
 }
 
 .form-container h1 {
@@ -45,7 +46,7 @@
 .form-group input[type="date"]:focus,
 .form-group input[type="file"]:focus,
 .form-group textarea:focus {
-    outline: 2px solid #006ed7;
+    outline: 1px solid #006ed7;
 }
 
 .upload-button {
@@ -61,7 +62,7 @@
 }
 
 .upload-button:hover {
-    outline: 2px solid #006ed7;
+    outline: 1px solid #006ed7;
 }
 
 .upload-button svg {
