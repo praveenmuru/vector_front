@@ -10,6 +10,7 @@ import Sidebar from './components/Sidebar';
 import Workboard from './components/Workboard';
 import CreateTask from './components/CreateTask';
 import Projects from './components/Projects';
+import CreateProject from './components/CreateProject';
 import ViewProject from './components/ViewProject';
 import './App.css';
 
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/" element={<Login setUserName={setUserName} />} />
             <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
             <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
+            <Route path="/create-project" element={<PrivateRoute userName={userName} component={CreateProject} />} />
             <Route path="/projects/view-project" element={<PrivateRoute userName={userName} component={ViewProject} />} />
             <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
             <Route path="/create-task" element={<CreateTask />} />

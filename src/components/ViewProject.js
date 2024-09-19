@@ -28,7 +28,7 @@
 // export default ViewProject;
 const Test = () => {
     return (
-        <div>In Process</div>
+        <div>In Process....</div>
     );
 };
 export default Test;
