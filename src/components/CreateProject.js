@@ -79,6 +79,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="projectName"
                         name="projectName"
+                        placeholder="Project Name"
                         value={newProject.projectName}
                         onChange={handleInputChange}
                         required
@@ -89,6 +90,7 @@ const CreateProject = ({ addProject }) => {
                     <textarea
                         id="description"
                         name="description"
+                        placeholder="Project Description"
                         value={newProject.description}
                         onChange={handleInputChange}
                         required
@@ -100,6 +102,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="projectManager"
                         name="projectManager"
+                        placeholder="Project Manager"
                         value={newProject.projectManager}
                         onChange={handleInputChange}
                         required
@@ -135,6 +138,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="teamMembers"
                         name="teamMembers"
+                        placeholder="Team Members"
                         value={newProject.teamMembers}
                         onChange={handleInputChange}
                         required
@@ -145,6 +149,7 @@ const CreateProject = ({ addProject }) => {
                     <textarea
                         id="rolesResponsibilities"
                         name="rolesResponsibilities"
+                        placeholder="Roles and Responsibilities"
                         value={newProject.rolesResponsibilities}
                         onChange={handleInputChange}
                         required
@@ -157,6 +162,7 @@ const CreateProject = ({ addProject }) => {
                     <CurrencyInput
                         id="budget"
                         name="budget"
+                        placeholder="Budget"
                         value={newProject.budget}
                         decimalsLimit={2}
                         prefix="$"
@@ -170,6 +176,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="toolsTechnologies"
                         name="toolsTechnologies"
+                        placeholder="Tools/Technologies"
                         value={newProject.toolsTechnologies}
                         onChange={handleInputChange}
                         required
