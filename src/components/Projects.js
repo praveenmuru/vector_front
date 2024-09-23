@@ -13,7 +13,12 @@ const Projects = () => {
     { id: '7', projectName: 'Hermes', description: 'Logistics optimization', projectManager: 'George Clooney', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Laura Green', 'Michael Brown'], rolesAndResponsibilities: 'Supply chain management and optimization', budget: '$900,000', toolsAndTechnologies: ['Java', 'Spring Boot', 'MySQL'] },
     { id: '8', projectName: 'Artemis', description: 'Lunar exploration', projectManager: 'Hannah Montana', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Nancy Drew', 'Oliver Twist'], rolesAndResponsibilities: 'Lunar rover design and deployment', budget: '$2,000,000', toolsAndTechnologies: ['C++', 'ROS', 'Gazebo'] },
     { id: '9', projectName: 'Hera', description: 'Healthcare innovation', projectManager: 'Ian McKellen', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Paul Walker', 'Quincy Adams'], rolesAndResponsibilities: 'Medical device development', budget: '$1,500,000', toolsAndTechnologies: ['JavaScript', 'Node.js', 'MongoDB'] },
-    { id: '10', projectName: 'Demeter', description: 'Agricultural technology', projectManager: 'Jane Austen', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Rachel Green', 'Steve Jobs'], rolesAndResponsibilities: 'Smart farming solutions', budget: '$700,000', toolsAndTechnologies: ['Python', 'Raspberry Pi', 'IoT'] }
+    { id: '10', projectName: 'Demeter', description: 'Agricultural technology', projectManager: 'Jane Austen', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Rachel Green', 'Steve Jobs'], rolesAndResponsibilities: 'Smart farming solutions', budget: '$700,000', toolsAndTechnologies: ['Python', 'Raspberry Pi', 'IoT'] },
+    { id: '11', projectName: 'Ares', description: 'Defense technology', projectManager: 'John Wick', startDate: '18-09-2024', endDate: '21-09-2024', teamMembers: ['Bruce Wayne', 'Clark Kent'], rolesAndResponsibilities: 'Weapon system development', budget: '$3,000,000', toolsAndTechnologies: ['C++', 'MATLAB', 'Simulink'] },
+    { id: '12', projectName: 'Hestia', description: 'Smart home solutions', projectManager: 'Tony Stark', startDate: '19-09-2024', endDate: '22-09-2024', teamMembers: ['Peter Parker', 'Natasha Romanoff'], rolesAndResponsibilities: 'Home automation system design', budget: '$1,100,000', toolsAndTechnologies: ['JavaScript', 'Node.js', 'IoT'] },
+    { id: '13', projectName: 'Dionysus', description: 'Wine production optimization', projectManager: 'Bruce Banner', startDate: '20-09-2024', endDate: '23-09-2024', teamMembers: ['Steve Rogers', 'Thor Odinson'], rolesAndResponsibilities: 'Fermentation process improvement', budget: '$900,000', toolsAndTechnologies: ['Python', 'R', 'MATLAB'] },
+    { id: '14', projectName: 'Hephaestus', description: 'Industrial automation', projectManager: 'Reed Richards', startDate: '21-09-2024', endDate: '24-09-2024', teamMembers: ['Susan Storm', 'Johnny Storm'], rolesAndResponsibilities: 'Robotic system design', budget: '$2,500,000', toolsAndTechnologies: ['C++', 'ROS', 'Gazebo'] },
+    { id: '15', projectName: 'Persephone', description: 'Environmental monitoring', projectManager: 'Diana Prince', startDate: '22-09-2024', endDate: '25-09-2024', teamMembers: ['Barry Allen', 'Arthur Curry'], rolesAndResponsibilities: 'Air and water quality analysis', budget: '$1,300,000', toolsAndTechnologies: ['Python', 'R', 'ArcGIS'] }
   ];
   const [projects, setProjects] = useState(initialProjects);
 
@@ -39,6 +44,12 @@ const Projects = () => {
 
   const handleAddProject = () => {
     navigate('/create-project');
+  };
+
+  const handleDeleteProject = (projectId) => {
+    if (window.confirm('Are you sure that you want to delete this project ?')) {
+      setProjects((prevProjects) => prevProjects.filter((project) => project.id !== projectId));
+    }
   };
 
   return (
@@ -80,7 +91,9 @@ const Projects = () => {
                     View
                   </button>
                   <button className="edit">Edit</button>
-                  <button className="delete">Delete</button>
+                  <button className="delete" onClick={() => handleDeleteProject(project.id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))
