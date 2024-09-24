@@ -1,76 +1,76 @@
-import React, { useState } from 'react';
-// import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaUpload } from 'react-icons/fa';
 import CurrencyInput from 'react-currency-input-field';
 import './CreateProject.css';
 
-const CreateProject = ({ addProject }) => {
+const CreateProject = ({ addProject, updateProject }) => {
+    const location = useLocation();
+    const { project, isEdit } = location.state || {};
 
-    // Sample JSON data for the form
-    // const dummyData = {
-    //     projectName: 'New Website Development',
-    //     description: 'Developing a new e-commerce website with the latest web technologies.',
-    //     projectManager: 'Jane Doe',
-    //     startDate: '2024-01-01',
-    //     endDate: '2024-12-31',
-    //     teamMembers: 'John, Mary, Bob',
-    //     rolesResponsibilities: 'John: Developer, Mary: Designer, Bob: Tester',
-    //     budget: '50000',
-    //     toolsTechnologies: 'React, Node.js, PostgreSQL',
-    //     documentation: 'Initial project requirements, design documents, test plans'
-    // };
-
-    const [newProject, setNewProject] = useState({
+    const [formData, setFormData] = useState({
         projectName: '',
         description: '',
         projectManager: '',
         startDate: '',
         endDate: '',
         teamMembers: '',
-        rolesResponsibilities: '',
+        rolesAndResponsibilities: '',
         budget: '',
-        toolsTechnologies: '',
+        toolsAndTechnologies: '',
         documentation: ''
     });
+
+    useEffect(() => {
+        if (isEdit && project) {
+            setFormData({
+                projectName: project.projectName || '',
+                description: project.description || '',
+                projectManager: project.projectManager || '',
+                startDate: formatDate(project.startDate) || '',
+                endDate: formatDate(project.endDate) || '',
+                teamMembers: (project.teamMembers || []).join(', '),
+                rolesAndResponsibilities: project.rolesAndResponsibilities || '',
+                budget: parseFloat(project.budget.replace(/[^0-9.-]+/g, "")) || 0,
+                toolsAndTechnologies: (project.toolsAndTechnologies || []).join(', ')
+            });
+        }
+    }, [isEdit, project]);
+
 
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setNewProject({ ...newProject, [name]: value });
-    };
-    const handleCurrencyChange = (value, name) => {
-        setNewProject({ ...newProject, [name]: value });
-    };
-    const handleFileChange = (e) => {
-        setNewProject({ ...newProject, documentation: e.target.files[0] });
+        setFormData({ ...formData, [name]: value });
     };
 
-    // useEffect(() => {
-    //     console.log('Loaded data:', dummyData);
-    // }, []);
+    const handleCurrencyChange = (value, name) => {
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, documentation: e.target.files[0] });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        // console.log('Project Name:', projectName);
-        // console.log('Description:', description);
-        // console.log('Project Manager:', projectManager);
-        // console.log('Start Date:', startDate);
-        // console.log('End Date:', endDate);
-        // console.log('Team Members:', teamMembers);
-        // console.log('Roles and Responsibilities:', rolesResponsibilities);
-        // console.log('Budget:', budget);
-        // console.log('Tools/Technologies:', toolsTechnologies);
-        // console.log('Documentation:', documentation);
-        addProject(newProject);
+        if (isEdit) {
+            updateProject(formData);
+        } else {
+            addProject(formData);
+        }
         navigate('/projects'); // Redirect to Projects page after submission
+    };
+
+    const formatDate = (dateString) => {
+        const [day, month, year] = dateString.split('-');
+        return `${year}-${month}-${day}`;
     };
 
     return (
         <div className="form-container">
-            <h1>Create New Project</h1>
+            <h1>{isEdit ? 'Edit Project' : 'Create New Project'}</h1>
             <form onSubmit={handleSubmit}>
                 <h2>Basic Information</h2>
                 <div className="form-group">
@@ -79,8 +79,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="projectName"
                         name="projectName"
-                        placeholder="Project Name"
-                        value={newProject.projectName}
+                        value={formData.projectName}
                         onChange={handleInputChange}
                         required
                     />
@@ -90,8 +89,7 @@ const CreateProject = ({ addProject }) => {
                     <textarea
                         id="description"
                         name="description"
-                        placeholder="Project Description"
-                        value={newProject.description}
+                        value={formData.description}
                         onChange={handleInputChange}
                         required
                     ></textarea>
@@ -102,8 +100,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="projectManager"
                         name="projectManager"
-                        placeholder="Project Manager"
-                        value={newProject.projectManager}
+                        value={formData.projectManager}
                         onChange={handleInputChange}
                         required
                     />
@@ -114,7 +111,7 @@ const CreateProject = ({ addProject }) => {
                         type="date"
                         id="startDate"
                         name="startDate"
-                        value={newProject.startDate}
+                        value={formData.startDate}
                         onChange={handleInputChange}
                         required
                     />
@@ -125,7 +122,7 @@ const CreateProject = ({ addProject }) => {
                         type="date"
                         id="endDate"
                         name="endDate"
-                        value={newProject.endDate}
+                        value={formData.endDate}
                         onChange={handleInputChange}
                         required
                     />
@@ -138,8 +135,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="teamMembers"
                         name="teamMembers"
-                        placeholder="Team Members"
-                        value={newProject.teamMembers}
+                        value={formData.teamMembers}
                         onChange={handleInputChange}
                         required
                     />
@@ -149,8 +145,7 @@ const CreateProject = ({ addProject }) => {
                     <textarea
                         id="rolesResponsibilities"
                         name="rolesResponsibilities"
-                        placeholder="Roles and Responsibilities"
-                        value={newProject.rolesResponsibilities}
+                        value={formData.rolesAndResponsibilities}
                         onChange={handleInputChange}
                         required
                     ></textarea>
@@ -162,8 +157,7 @@ const CreateProject = ({ addProject }) => {
                     <CurrencyInput
                         id="budget"
                         name="budget"
-                        placeholder="Budget"
-                        value={newProject.budget}
+                        value={formData.budget}
                         decimalsLimit={2}
                         prefix="$"
                         onValueChange={(value, name) => handleCurrencyChange(value, name)}
@@ -176,8 +170,7 @@ const CreateProject = ({ addProject }) => {
                         type="text"
                         id="toolsTechnologies"
                         name="toolsTechnologies"
-                        placeholder="Tools/Technologies"
-                        value={newProject.toolsTechnologies}
+                        value={formData.toolsAndTechnologies}
                         onChange={handleInputChange}
                         required
                     />
@@ -197,10 +190,10 @@ const CreateProject = ({ addProject }) => {
                     >
                         <FaUpload /> Upload Documentation
                     </button>
-                    {newProject.documentation && <p>Selected file: {newProject.documentation.name}</p>}
+                    {formData.documentation && <p>Selected file: {formData.documentation.name}</p>}
                 </div>
 
-                <button type="submit">Create Project</button>
+                <button type="submit">{project ? 'Update Project' : 'Create Project'}</button>
             </form>
         </div>
     );

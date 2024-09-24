@@ -2,6 +2,7 @@
     position: absolute;
     top: 140px;
     right: 50px;
+    overflow-x: auto;
 }
 
 .actions button {
@@ -20,8 +21,12 @@
     background-color: #0061bb;
 }
 
+.table-container {
+    overflow-x: auto;
+}
+
 .projects-table {
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 80px;
 }
