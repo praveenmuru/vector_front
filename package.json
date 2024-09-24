@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.4.5",
     "jwt-decode": "^4.0.0",
+    "openai": "^4.63.0",
     "react": "^18.3.1",
     "react-beautiful-dnd": "^13.1.1",
     "react-currency-input-field": "^3.8.0",
