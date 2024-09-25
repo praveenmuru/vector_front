@@ -14,6 +14,10 @@
     color: #006ed7;
 }
 
+.form-container h2 {
+    color: #757983;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -31,6 +35,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: Poppins, sans-serif;
 }
 
 .form-group textarea {
