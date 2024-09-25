@@ -10,6 +10,7 @@ const Sidebar = () => {
         backgroundColor: '#f4f4f4',
         height: '100vh',
         width: '15%',
+        fontWeight: '500',
     };
 
     const linkStyle = {

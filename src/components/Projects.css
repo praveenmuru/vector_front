@@ -42,20 +42,23 @@
     background-color: #f4f4f4;
 }
 
-button.view,
-view {
-    background-color: #4CAF50;
-    color: white;
+button {
+    font-family: Poppins, sans-serif;
     border: none;
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 3px;
     margin-top: 2px;
     margin-bottom: 2px;
     cursor: pointer;
 }
 
-button.view:hover,
-.view:hover {
+button.view {
+    background-color: #4CAF50;
+    color: white;
+
+}
+
+button.view:hover {
     background-color: #45a049;
 }
 
@@ -63,12 +66,6 @@ button.edit {
     margin-left: 5px;
     background-color: #008CBA;
     color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    cursor: pointer;
 }
 
 button.edit:hover {
@@ -79,12 +76,6 @@ button.delete {
     margin-left: 5px;
     background-color: #f44336;
     color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-top: 2px;
-    border-radius: 4px;
-    margin-bottom: 2px;
-    cursor: pointer;
 }
 
 button.delete:hover {

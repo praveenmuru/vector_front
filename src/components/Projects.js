@@ -14,11 +14,11 @@ const Projects = () => {
     { id: '8', projectName: 'Artemis', description: 'Lunar exploration', projectManager: 'Hannah Montana', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Nancy Drew', 'Oliver Twist'], rolesAndResponsibilities: 'Lunar rover design and deployment', budget: '$2,000,000', toolsAndTechnologies: ['C++', 'ROS', 'Gazebo'] },
     { id: '9', projectName: 'Hera', description: 'Healthcare innovation', projectManager: 'Ian McKellen', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Paul Walker', 'Quincy Adams'], rolesAndResponsibilities: 'Medical device development', budget: '$1,500,000', toolsAndTechnologies: ['JavaScript', 'Node.js', 'MongoDB'] },
     { id: '10', projectName: 'Demeter', description: 'Agricultural technology', projectManager: 'Jane Austen', startDate: '14-09-2024', endDate: '17-09-2024', teamMembers: ['Rachel Green', 'Steve Jobs'], rolesAndResponsibilities: 'Smart farming solutions', budget: '$700,000', toolsAndTechnologies: ['Python', 'Raspberry Pi', 'IoT'] },
-    { id: '11', projectName: 'Ares', description: 'Defense technology', projectManager: 'John Wick', startDate: '18-09-2024', endDate: '21-09-2024', teamMembers: ['Bruce Wayne', 'Clark Kent'], rolesAndResponsibilities: 'Weapon system development', budget: '$3,000,000', toolsAndTechnologies: ['C++', 'MATLAB', 'Simulink'] },
+    { id: '11', projectName: 'Ares', description: 'Defense technology', projectManager: 'John Wick', startDate: '18-09-2024', endDate: '21-09-2024', teamMembers: ['John Constantine', 'Neo Anderson'], rolesAndResponsibilities: 'Weapon system development', budget: '$3,000,000', toolsAndTechnologies: ['C++', 'MATLAB', 'Simulink'] },
     { id: '12', projectName: 'Hestia', description: 'Smart home solutions', projectManager: 'Tony Stark', startDate: '19-09-2024', endDate: '22-09-2024', teamMembers: ['Peter Parker', 'Natasha Romanoff'], rolesAndResponsibilities: 'Home automation system design', budget: '$1,100,000', toolsAndTechnologies: ['JavaScript', 'Node.js', 'IoT'] },
     { id: '13', projectName: 'Dionysus', description: 'Wine production optimization', projectManager: 'Bruce Banner', startDate: '20-09-2024', endDate: '23-09-2024', teamMembers: ['Steve Rogers', 'Thor Odinson'], rolesAndResponsibilities: 'Fermentation process improvement', budget: '$900,000', toolsAndTechnologies: ['Python', 'R', 'MATLAB'] },
     { id: '14', projectName: 'Hephaestus', description: 'Industrial automation', projectManager: 'Reed Richards', startDate: '21-09-2024', endDate: '24-09-2024', teamMembers: ['Susan Storm', 'Johnny Storm'], rolesAndResponsibilities: 'Robotic system design', budget: '$2,500,000', toolsAndTechnologies: ['C++', 'ROS', 'Gazebo'] },
-    { id: '15', projectName: 'Persephone', description: 'Environmental monitoring', projectManager: 'Alice Johnson', startDate: '22-09-2024', endDate: '25-09-2024', teamMembers: ['Barry Allen', 'Arthur Curry'], rolesAndResponsibilities: 'Air and water quality analysis', budget: '$1,300,000', toolsAndTechnologies: ['Python', 'R', 'ArcGIS'] }
+    { id: '15', projectName: 'Persephone', description: 'Environmental monitoring', projectManager: 'Alice Johnson', startDate: '22-09-2024', endDate: '25-09-2024', teamMembers: ['Victor Stone', 'Arthur Curry'], rolesAndResponsibilities: 'Air and water quality analysis', budget: '$1,300,000', toolsAndTechnologies: ['Python', 'R', 'ArcGIS'] }
   ];
   const [projects, setProjects] = useState(initialProjects);
 
@@ -70,8 +70,8 @@ const Projects = () => {
               <th>Project Name</th>
               <th>Description</th>
               <th>Project Manager</th>
-              <th>Start Date</th>
-              <th>End Date</th>
+              <th style={{ width: '10%' }}>Start Date</th>
+              <th style={{ width: '10%' }}>End Date</th>
               <th>Team Members</th>
               <th>Roles and Responsibilities</th>
               <th>Budget</th>
