@@ -17,10 +17,17 @@ function Login({ setUserName }) {
   const handleSuccess = (credentialResponse) => {
     const userObject = jwtDecode(credentialResponse.credential);
     setUserName(userObject.name);
-    console.log(userObject.name);
+    sessionStorage.setItem('userName', userObject.name);
     navigate('/dashboard', { state: { userName: userObject.name } });
 
 };
+
+const handleLogout = () => {
+  sessionStorage.removeItem('userName');
+  setUserName(null);
+  navigate('/login');
+};
+
 
   
 

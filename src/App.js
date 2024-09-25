@@ -13,6 +13,7 @@ import Projects from './components/Projects';
 import CreateProject from './components/CreateProject';
 import ViewProject from './components/ViewProject';
 import './App.css';
+import withAuth from './components/withAuth';
 
 const App = () => {
   const [userName, setUserName] = useState('');
@@ -31,13 +32,15 @@ const App = () => {
         {userName && <Sidebar />}
         <div className="content">
           <Routes>
-            <Route path="/" element={<Login setUserName={setUserName} />} />
-            <Route path="/dashboard" element={<PrivateRoute userName={userName} component={Dashboard} />} />
-            <Route path="/projects" element={<PrivateRoute userName={userName} component={Projects} />} />
-            <Route path="/create-project" element={<PrivateRoute userName={userName} component={CreateProject} />} />
-            <Route path="/projects/view-project" element={<PrivateRoute userName={userName} component={ViewProject} />} />
-            <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
-            <Route path="/create-task" element={<CreateTask />} />
+            <Route path="/login" element={<Login setUserName={setUserName} />} />
+            <Route path="/" element={<PrivateRoute userName={userName} component={Dashboard} />} />
+
+            <Route path="/dashboard" element={<PrivateRoute userName={userName} component={withAuth(Dashboard)} />} />
+            <Route path="/projects" element={<PrivateRoute userName={userName} component={withAuth(Projects)} />} />
+            <Route path="/create-project" element={<PrivateRoute userName={userName} component={withAuth(CreateProject)} />} />
+            <Route path="/projects/view-project" element={<PrivateRoute userName={userName} component={withAuth(ViewProject)} />} />
+            <Route path="/workboard" element={<PrivateRoute userName={userName} component={withAuth(Workboard)} />} />
+            {/* <Route path="/create-task" element={<CreateTask />} /> */}
           </Routes>
         </div>
       </div>

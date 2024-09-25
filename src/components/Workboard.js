@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useNavigate } from 'react-router-dom';
 import './Workboard.css'; // Import the CSS file
+import Tasklist from './TaskList';
 
 import OpenAI from "openai";
 const openai = new OpenAI(
@@ -29,6 +30,40 @@ const initialTasks = [
 
 const statuses = ['development', 'QA', 'completed'];
 
+const tempTasks = {
+  "indexed_tasks": {
+    "1": {
+      "task": "API integration: Integrate third-party API",
+      "steps": [
+        "Identify the third-party API to be integrated.",
+        "Review the API documentation for authentication methods and endpoints.",
+        "Set up the development environment, including necessary libraries or SDKs.",
+        "Obtain API access credentials (API key, OAuth token, etc.).",
+        "Implement authentication in the application code.",
+        "Create function calls to the required API endpoints.",
+        "Handle error responses and exceptions in the code.",
+        "Test the integration with sample requests and responses.",
+        "Optimize the integration for performance and scalability.",
+        "Deploy the integration to the production environment."
+      ]
+    },
+    "2": {
+      "task": "Update documentation: Update API documentation",
+      "steps": [
+        "Gather all recent changes made to the API.",
+        "Review the existing API documentation for outdated information.",
+        "Update the API endpoints with new parameters or changes.",
+        "Add examples for new features or functionalities.",
+        "Ensure that authentication and access control details are accurate.",
+        "Check for consistent formatting across the documentation.",
+        "Update versioning information as necessary.",
+        "Seek feedback from team members on the revised documentation.",
+        "Finalize the updated documentation.",
+        "Publish the updated API documentation to the appropriate platform."
+      ]
+    }
+  }
+};
 const getDevelopmentTasks = () => {
   return initialTasks.filter(task => task.status === 'development');
 };
@@ -37,6 +72,7 @@ const Workboard = () => {
   const [tasks, setTasks] = useState(initialTasks);
   const [loading, setLoading] = useState(false);
   const [dailyTask, setDailyTask] = useState('');
+  const [taskFetched, setTaskFetched] = useState(false); // New state variable
   const navigate = useNavigate();
 
   const onDragEnd = (result) => {
@@ -49,30 +85,6 @@ const Workboard = () => {
 
     setTasks(updatedTasks);
   };
-
-  // const generateDescription = async (taskName) => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch('http://localhost:8000/api/generate-description', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ taskName }),
-  //     });
-  //     const data = await response.json();
-  //     const description = data.description;
-  //     setTasks((prevTasks) =>
-  //       prevTasks.map((task) =>
-  //         task.taskName === taskName ? { ...task, description } : task
-  //       )
-  //     );
-  //   } catch (error) {
-  //     console.error('Error generating description:', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const fetchDailyTask = async () => {
     setLoading(true);
@@ -90,55 +102,20 @@ const Workboard = () => {
 
       const summary = completion.choices[0].message.content;
 
+      // setDailyTask(summary);
 
-      const TodoList = ({ summary }) => {
-  const [checkedItems, setCheckedItems] = useState({});
 
-  const handleCheckboxChange = (taskId, stepIndex) => {
-    setCheckedItems(prevState => ({
-      ...prevState,
-      [`${taskId}-${stepIndex}`]: !prevState[`${taskId}-${stepIndex}`]
-    }));
-  };
+      function trimJson(input) {
+        let trimmed = input.replace(/^```json\s*/, '');
+        trimmed = trimmed.replace(/\s*```$/, '');
+        return trimmed;
+    }
+    
+    const trimmedSummary = trimJson(summary);
+    setDailyTask(trimmedSummary);
 
-  return (
-    <div className="todo-list">
-      {Object.keys(summary.tasks).map(taskId => {
-        const task = summary.tasks[taskId];
-        return (
-          <div className="task" key={taskId}>
-            <h3>{task.task}</h3>
-            <ul>
-              {task.steps.map((step, index) => (
-                <li key={index}>
-                  <input
-                    type="checkbox"
-                    id={`task-${taskId}-step-${index}`}
-                    checked={!!checkedItems[`${taskId}-${index}`]}
-                    onChange={() => handleCheckboxChange(taskId, index)}
-                  />
-                  <label
-                    htmlFor={`task-${taskId}-step-${index}`}
-                    style={{
-                      textDecoration: checkedItems[`${taskId}-${index}`]
-                        ? 'line-through'
-                        : 'none'
-                    }}
-                  >
-                    {step}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
 
-      // const summary = 'Implement login: Create login functionality\nSetup database: Install and configure MongoDB\nAPI integration: Integrate third-party API\nUpdate documentation: Update API documentation\nSetup CI/CD: Configure continuous integration and deployment';
-      setDailyTask(summary);
+      setTaskFetched(true); // Set taskFetched to true on success
     } catch (error) {
       console.error('Error fetching daily task:', error);
       setDailyTask('Failed to fetch daily task.');
@@ -186,8 +163,8 @@ const Workboard = () => {
       <button
         onClick={fetchDailyTask}
         style={{
-          backgroundColor: '#0d60a3',
-          color: 'white',
+          backgroundColor: 'rgb(193 201 207)',
+          color: '#523c3c;',
           border: 'none',
           padding: '10px 20px',
           cursor: 'pointer',
@@ -199,7 +176,7 @@ const Workboard = () => {
       >
         {loading ? 'Fetching...' : 'generate Todo list for the day'}
       </button>
-      <textarea
+      {/* <textarea
         value={dailyTask}
         readOnly
         style={{
@@ -210,7 +187,8 @@ const Workboard = () => {
           border: '1px solid #ccc',
           marginBottom: '20px',
         }}
-      />
+      /> */}
+      {taskFetched && <Tasklist tempTasks={tempTasks} />} {/* Pass tempTasks as a prop */}
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           style={{
@@ -258,22 +236,6 @@ const Workboard = () => {
                           <h3 style={{ margin: '0', fontSize: '1.2em' }}>{task.taskName}</h3>
                           <p style={{ margin: '4px 0' }}>{task.description}</p>
                           <p style={{ margin: '4px 0' }}><strong>Assigned to:</strong> {task.assignedTo}</p>
-                          {/* <button
-                             onClick={() => generateDescription(task.taskName)}
-                            style={{
-                              backgroundColor: '#0d60a3',
-                              color: 'white',
-                              border: 'none',
-                              padding: '5px 10px',
-                              cursor: 'pointer',
-                              borderRadius: '4px',
-                              fontWeight: 'bold',
-                              marginTop: '10px'
-                            }}
-                            disabled={loading}
-                          >
-                            {loading ? 'Generating...' : 'Generate Description'}
-                          </button> */}
                         </div>
                       )}
                     </Draggable>
