@@ -10,6 +10,10 @@ function Dashboard() {
   const query = useQuery();
   const name = query.get('name');
 
+  // Debugging: Log the query parameters
+  console.log('Query Parameters:', query.toString());
+  console.log('Name:', name);
+
   return (
     <div className="dashboard-container">
       {/* {<Sidebar />} */}
