@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import PieChartComponent from './PieChartComponent.jsx';
 import './Dashboard.css';
-import PieChart from 'react-minimal-pie-chart';
 
 
 function useQuery() {
@@ -42,15 +42,11 @@ function Dashboard() {
             <h1>{upcomingProjects}</h1>
           </div>
         </div>
+        <br />
         <div className="chart-container">
-          <h3>Project Status Distribution</h3>
-          <PieChart
-            data={[
-              { title: 'Active', value: activeProjects, color: '#4caf50' },
-              { title: 'Completed', value: completedProjects, color: '#2196f3' },
-              { title: 'Overdue', value: overdueProjects, color: '#f44336' },
-            ]}
-          />
+          <div className="status-pie-chart">
+            <PieChartComponent />
+          </div>
         </div>
       </div>
     </div>
