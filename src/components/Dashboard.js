@@ -43,10 +43,8 @@ function Dashboard() {
           </div>
         </div>
         <br />
-        <div className="chart-container">
-          <div className="status-pie-chart">
-            <PieChartComponent />
-          </div>
+        <div className="status-pie-chart">
+          <PieChartComponent />
         </div>
       </div>
     </div>
