@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import PieChartComponent from './PieChartComponent.jsx';
+import BarGraphComponent from './BarGraphComponent.jsx';
 import './Dashboard.css';
 
 
@@ -49,8 +50,9 @@ function Dashboard() {
           </div>
         </div>
         <br />
-        <div className="status-pie-chart">
+        <div className="project-status-charts">
           <PieChartComponent />
+          <BarGraphComponent />
         </div>
         <br />
         <div className="task-status-grid">
