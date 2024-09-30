@@ -7,7 +7,7 @@
     margin-left: 200px;
 } */
 
-.metrics-grid {
+.project-status-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 5px;
@@ -38,6 +38,7 @@
 .chart-container {
     width: 400px;
     height: 400px;
+    margin: 0 auto;
 }
 
 .status-pie-chart {
@@ -45,4 +46,10 @@
     justify-content: left;
     height: 400px;
     margin-top: 20px;
+}
+
+.task-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
 }
