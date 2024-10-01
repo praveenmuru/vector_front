@@ -5,15 +5,15 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChartComponent = () => {
+const PieChartComponent = ({ labels, dataValues, chartLabel }) => {
     const data = {
-        labels: ['Active', 'Completed', 'Overdue'],
+        labels: labels,
         datasets: [
             {
-                label: '# of Projects',
-                data: [5, 10, 2], // Example values for Active, Completed, Overdue
-                backgroundColor: ['#36A2EB', '#4CAF50', '#FF6384'],
-                hoverBackgroundColor: ['#36A2EB', '#4CAF50', '#FF6384'],
+                label: chartLabel,
+                data: dataValues,
+                backgroundColor: ['#36A2EB', '#4CAF50', '#F44336'],
+                hoverBackgroundColor: ['#36A2EB', '#4CAF50', '#F44336'],
                 borderWidth: 1,
             },
         ],
