@@ -22,9 +22,21 @@ function Dashboard() {
   const overdueProjects = 2;
   const upcomingProjects = 3;
 
+  const projectData = [
+    { name: 'Active', value: activeProjects },
+    { name: 'Completed', value: completedProjects },
+    { name: 'Overdue', value: overdueProjects },
+  ];
+
   const pendingTasks = 7;
   const inProgressTasks = 8;
   const completedTasks = 5;
+
+  const taskData = [
+    { name: 'In Progress', value: inProgressTasks },
+    { name: 'Completed', value: completedTasks },
+    { name: 'Pending', value: pendingTasks },
+  ];
 
   return (
     <div className="dashboard-container">
@@ -51,8 +63,16 @@ function Dashboard() {
         </div>
         <br />
         <div className="project-status-charts">
-          <PieChartComponent />
-          <BarGraphComponent />
+          <PieChartComponent
+            labels={['Active', 'Completed', 'Overdue']}
+            dataValues={[activeProjects, completedProjects, overdueProjects]}
+            chartLabel="Projects"
+          />
+          <BarGraphComponent
+            data={projectData}
+            colors={['#76cffb', '#82ca9d', '#ff5a5a']}
+            domain={[0, 20]}
+          />
         </div>
         <br />
         <div className="task-status-grid">
@@ -69,7 +89,19 @@ function Dashboard() {
             <h1>{completedTasks}</h1>
           </div>
         </div>
-
+        <br />
+        <div className="task-status-charts">
+          <PieChartComponent
+            labels={['Completed', 'In Progress', 'Pending']}
+            dataValues={[completedTasks, inProgressTasks, pendingTasks]}
+            chartLabel="Tasks"
+          />
+          <BarGraphComponent
+            data={taskData}
+            colors={['#76cffb', '#82ca9d', '#ff5a5a']}
+            domain={[0, 20]}
+          />
+        </div>
       </div>
     </div>
   );
