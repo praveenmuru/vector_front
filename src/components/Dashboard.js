@@ -70,7 +70,7 @@ function Dashboard() {
           />
           <BarGraphComponent
             data={projectData}
-            colors={['#76cffb', '#82ca9d', '#ff5a5a']}
+            colors={['#6A5ACD', '#228B22', '#DC143C']}
             domain={[0, 20]}
           />
         </div>
@@ -98,7 +98,7 @@ function Dashboard() {
           />
           <BarGraphComponent
             data={taskData}
-            colors={['#76cffb', '#82ca9d', '#ff5a5a']}
+            colors={['#6A5ACD', '#228B22', '#DC143C']}
             domain={[0, 20]}
           />
         </div>

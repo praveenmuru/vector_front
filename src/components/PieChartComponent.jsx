@@ -12,8 +12,8 @@ const PieChartComponent = ({ labels, dataValues, chartLabel }) => {
             {
                 label: chartLabel,
                 data: dataValues,
-                backgroundColor: ['#36A2EB', '#4CAF50', '#F44336'],
-                hoverBackgroundColor: ['#36A2EB', '#4CAF50', '#F44336'],
+                backgroundColor: ['#4B0082', '#008b8b', '#FF1493'],
+                hoverBackgroundColor: ['#4B0082', '#008b8b', '#FF1493'],
                 borderWidth: 1,
             },
         ],
