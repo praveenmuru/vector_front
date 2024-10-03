@@ -77,12 +77,12 @@ function Dashboard() {
         <br />
         <div className="task-status-grid">
           <div className="metric">
-            <h3>Number of Pending Tasks</h3>
-            <h1>{pendingTasks}</h1>
-          </div>
-          <div className="metric">
             <h3>Number of Tasks in Progress</h3>
             <h1>{inProgressTasks}</h1>
+          </div>
+          <div className="metric">
+            <h3>Number of Pending Tasks</h3>
+            <h1>{pendingTasks}</h1>
           </div>
           <div className="metric">
             <h3>Number of Completed Tasks</h3>
