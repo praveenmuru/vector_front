@@ -29,9 +29,9 @@ function Dashboard() {
     { name: 'Overdue', value: overdueProjects },
   ];
 
-  const pendingTasks = 7;
-  const inProgressTasks = 8;
-  const completedTasks = 5;
+  const pendingTasks = 20;
+  const inProgressTasks = 30;
+  const completedTasks = 25;
 
   const taskData = [
     { name: 'In Progress', value: inProgressTasks },
@@ -42,11 +42,13 @@ function Dashboard() {
   const teamMembersPerformanceData = [
     { id: '1', name: 'Robb Stark', completedTasks: '4', assignedTasks: '10', completionRate: 0 },
     { id: '2', name: 'Thomas Shelby', completedTasks: '7', assignedTasks: '8', completionRate: 0 },
-    { id: '3', name: 'Joffrey Lannister', completedTasks: '4', assignedTasks: '12', completionRate: 0 },
+    { id: '3', name: 'Joffrey Baratheon', completedTasks: '4', assignedTasks: '12', completionRate: 0 },
     { id: '4', name: 'Roronoa Zoro', completedTasks: '8', assignedTasks: '10', completionRate: 0 },
     { id: '5', name: 'Eren Yeager', completedTasks: '4', assignedTasks: '4', completionRate: 0 },
     { id: '7', name: 'Dominic Toretto', completedTasks: '5', assignedTasks: '9', completionRate: 0 },
-    { id: '8', name: 'NIco Robin', completedTasks: '6', assignedTasks: '9', completionRate: 0 }
+    { id: '8', name: 'Nico Robin', completedTasks: '6', assignedTasks: '9', completionRate: 0 },
+    { id: '9', name: 'Draco Malfoy', completedTasks: '3', assignedTasks: '8', completionRate: 0 },
+    { id: '10', name: 'Miles Morales', completedTasks: '6', assignedTasks: '13', completionRate: 0 }
   ];
   teamMembersPerformanceData.forEach(member => {
     member.completionRate = (member.completedTasks / member.assignedTasks) * 100;
