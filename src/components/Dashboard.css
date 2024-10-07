@@ -61,3 +61,45 @@
     height: 400px;
     margin-top: 20px;
 }
+
+.table-container {
+    overflow-x: auto;
+}
+
+.team-performance-status {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.performance-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+.performance-table thead {
+    position: sticky;
+}
+
+.performance-table th,
+.performance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.performance-table th {
+    background-color: #f4f4f4;
+}
+
+.performance-table tbody {
+    overflow-y: scroll;
+}
+
+.performance-graph {
+    max-height: 100%;
+}

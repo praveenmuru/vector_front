@@ -24,7 +24,7 @@ const PerformanceGraphComponent = ({ data }) => {
       <div style={{ width: '80%' }}>
         <BarChart
           width={1000}
-          height={400}
+          height={600}
           data={formattedData}
           layout="vertical"  // Horizontal bar chart
           margin={{ top: 30, right: 30, left: 30, bottom: 15 }}
