@@ -1,16 +1,21 @@
 .form-container {
-    max-width: 50%;
+    max-width: 60%;
     margin: 0 auto;
     padding: 20px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 8px;
     background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.305);
 }
 
 .form-container h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #006ed7;
+}
+
+.form-container h2 {
+    color: #757983;
 }
 
 .form-group {
@@ -30,6 +35,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: Poppins, sans-serif;
 }
 
 .form-group textarea {
@@ -45,7 +51,7 @@
 .form-group input[type="date"]:focus,
 .form-group input[type="file"]:focus,
 .form-group textarea:focus {
-    outline: 2px solid #006ed7;
+    outline: 1px solid #006ed7;
 }
 
 .upload-button {
@@ -61,7 +67,7 @@
 }
 
 .upload-button:hover {
-    outline: 2px solid #006ed7;
+    outline: 1px solid #006ed7;
 }
 
 .upload-button svg {

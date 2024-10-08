@@ -8,8 +8,9 @@ const Sidebar = () => {
     const sidebarStyle = {
         padding: '10px',
         backgroundColor: '#f4f4f4',
-        height: '100vh',
+        height: '100%',
         width: '15%',
+        fontWeight: '500',
     };
 
     const linkStyle = {

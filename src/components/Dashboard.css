@@ -1,13 +1,105 @@
-.dashboard-container {
-    display: flex;
-    align-items: center;
-}
-
-.dashboard-content {
+/* .dashboard-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     text-align: center;
     margin-left: 200px;
+} */
+
+.project-status-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+
+.metric {
+    max-width: 100%;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.305);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.metric h1 {
+    color: #ee8e07;
+    text-align: center;
+    font-size: 50px;
+}
+
+.metric h3 {
+    color: #006ED7;
+    text-align: center;
+}
+
+.chart-container {
+    width: 400px;
+    height: 400px;
+}
+
+.project-status-charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.task-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+
+.task-status-charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.team-performance-status {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.performance-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+.performance-table thead {
+    position: sticky;
+}
+
+.performance-table th,
+.performance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.performance-table th {
+    background-color: #f4f4f4;
+}
+
+.performance-table tbody {
+    overflow-y: scroll;
+}
+
+.performance-graph {
+    max-height: 100%;
 }
