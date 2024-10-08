@@ -17,7 +17,7 @@ function Login({ setUserName }) {
   const handleSuccess = (credentialResponse) => {
     const userObject = jwtDecode(credentialResponse.credential);
     setUserName(userObject.name);
-    console.log(userObject.name);
+    sessionStorage.setItem('username',userObject.name);
     navigate('/dashboard', { state: { userName: userObject.name } });
 
 };

@@ -15,7 +15,7 @@ const openai = new OpenAI(
 const initialTasks = [
   { id: '1', taskName: 'Implement login', description: 'Create login functionality', assignedTo: 'Alice', status: 'QA' },
   { id: '2', taskName: 'Setup database', description: 'Install and configure MongoDB', assignedTo: 'Bob', status: 'QA' },
-  { id: '3', taskName: 'Design homepage', description: 'Create homepage layout', assignedTo: 'Charlie', status: 'completed' },
+  { id: '3', taskName: 'Design homepage', description: 'Create homepage layout', assignedTo: 'Charlie', status: 'development' },
   { id: '4', taskName: 'API integration', description: 'Integrate third-party API', assignedTo: 'David', status: 'development' },
   { id: '5', taskName: 'Write unit tests', description: 'Write tests for user module', assignedTo: 'Eve', status: 'QA' },
   { id: '6', taskName: 'Fix bugs', description: 'Resolve issues in the payment module', assignedTo: 'Frank', status: 'completed' },
@@ -29,7 +29,6 @@ const initialTasks = [
 ];
 
 const statuses = ['development', 'QA', 'completed'];
-
 const tempTasks = {
   "indexed_tasks": {
     "1": {
@@ -64,6 +63,7 @@ const tempTasks = {
     }
   }
 };
+
 const getDevelopmentTasks = () => {
   return initialTasks.filter(task => task.status === 'development');
 };
@@ -176,7 +176,7 @@ const Workboard = () => {
       >
         {loading ? 'Fetching...' : 'generate Todo list for the day'}
       </button>
-      {/* <textarea
+      <textarea
         value={dailyTask}
         readOnly
         style={{
@@ -187,8 +187,8 @@ const Workboard = () => {
           border: '1px solid #ccc',
           marginBottom: '20px',
         }}
-      /> */}
-      {taskFetched && <Tasklist tempTasks={tempTasks} />} {/* Pass tempTasks as a prop */}
+      />
+      {taskFetched && <Tasklist tempTasks={tempTasks} />}
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           style={{

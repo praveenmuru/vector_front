@@ -28,7 +28,7 @@ const App = () => {
     <div className="App">
       <Header />
       <div className="main-content">
-        {userName && <Sidebar />}
+        {sessionStorage.getItem('username') && <Sidebar />}
         <div className="content">
           <Routes>
             <Route path="/" element={<Login setUserName={setUserName} />} />
