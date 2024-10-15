@@ -180,6 +180,7 @@ const CreateProject = ({ addProject, updateProject }) => {
                     <input
                         type="file"
                         id="documentation"
+                        accept=".pdf,.docx,.jpg,.jpeg,.png"
                         onChange={handleFileChange}
                         style={{ display: 'none' }} // Hide the default file input
                     />
