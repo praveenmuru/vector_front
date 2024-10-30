@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import { FaUpload } from 'react-icons/fa';
 import CurrencyInput from 'react-currency-input-field';
 import './CreateProject.css';
@@ -53,12 +54,26 @@ const CreateProject = ({ addProject, updateProject }) => {
         setFormData({ ...formData, documentation: e.target.files[0] });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (isEdit) {
             updateProject(formData);
         } else {
-            addProject(formData);
+            try {
+                const response = await axios.post('http://localhost:8000/api/projects', formData, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                alert('Project created successfully!');
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error creating project:', error);
+                alert('Failed to create project');
+            }
         }
         navigate('/projects'); // Redirect to Projects page after submission
     };
@@ -141,10 +156,10 @@ const CreateProject = ({ addProject, updateProject }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="rolesResponsibilities">Roles and Responsibilities:</label>
+                    <label htmlFor="rolesAndResponsibilities">Roles and Responsibilities:</label>
                     <textarea
-                        id="rolesResponsibilities"
-                        name="rolesResponsibilities"
+                        id="rolesAndResponsibilities"
+                        name="rolesAndResponsibilities"
                         value={formData.rolesAndResponsibilities}
                         onChange={handleInputChange}
                         required
@@ -165,11 +180,11 @@ const CreateProject = ({ addProject, updateProject }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="toolsTechnologies">Tools/Technologies:</label>
+                    <label htmlFor="toolsAndTechnologies">Tools/Technologies:</label>
                     <input
                         type="text"
-                        id="toolsTechnologies"
-                        name="toolsTechnologies"
+                        id="toolsAndTechnologies"
+                        name="toolsAndTechnologies"
                         value={formData.toolsAndTechnologies}
                         onChange={handleInputChange}
                         required
