@@ -49,7 +49,7 @@ const Projects = () => {
   };
 
   const handleDeleteProject = async (id) => {
-    if (window.confirm('Are you sure that you want to delete this project ?')) {
+    if (window.confirm('Are you sure that you want to delete this project?')) {
       try {
         await axios.delete(`http://127.0.0.1:8000/api/projects/${id}`);
         setProjects(prevProjects => prevProjects.filter(project => project.id !== id));
@@ -73,8 +73,8 @@ const Projects = () => {
         <table className="projects-table">
           <thead>
             <tr>
-              <th>Project Name</th>
-              <th>Description</th>
+              <th style={{ width: '10%' }}>Project Name</th>
+              <th style={{ width: '10%' }}>Description</th>
               <th>Project Manager</th>
               <th style={{ width: '10%' }}>Start Date</th>
               <th style={{ width: '10%' }}>End Date</th>
@@ -105,7 +105,7 @@ const Projects = () => {
                     <button className="edit" onClick={() => handleEditProject(project)}>
                       Edit
                     </button>
-                    <button className="delete" onClick={() => handleDeleteProject(project)}>
+                    <button className="delete" onClick={() => handleDeleteProject(project.id)}>
                       Delete
                     </button>
                   </td>
