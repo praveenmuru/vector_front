@@ -5,7 +5,7 @@ import { FaUpload } from 'react-icons/fa';
 import CurrencyInput from 'react-currency-input-field';
 import './CreateProject.css';
 
-const CreateProject = ({ addProject, updateProject }) => {
+const CreateProject = ({ updateProject }) => {
     const location = useLocation();
     const { project, isEdit } = location.state || {};
 
@@ -28,12 +28,12 @@ const CreateProject = ({ addProject, updateProject }) => {
                 projectName: project.projectName || '',
                 description: project.description || '',
                 projectManager: project.projectManager || '',
-                startDate: formatDate(project.startDate) || '',
-                endDate: formatDate(project.endDate) || '',
-                teamMembers: (project.teamMembers || []).join(', '),
+                startDate: project.startDate || '',
+                endDate: project.endDate || '',
+                teamMembers: project.teamMembers || '',
                 rolesAndResponsibilities: project.rolesAndResponsibilities || '',
                 budget: parseFloat(project.budget.replace(/[^0-9.-]+/g, "")) || 0,
-                toolsAndTechnologies: (project.toolsAndTechnologies || []).join(', ')
+                toolsAndTechnologies: project.toolsAndTechnologies || '',
             });
         }
     }, [isEdit, project]);
@@ -78,10 +78,10 @@ const CreateProject = ({ addProject, updateProject }) => {
         navigate('/projects'); // Redirect to Projects page after submission
     };
 
-    const formatDate = (dateString) => {
-        const [day, month, year] = dateString.split('-');
-        return `${year}-${month}-${day}`;
-    };
+    // const formatDate = (dateString) => {
+    //     const [day, month, year] = dateString.split('-');
+    //     return `${year}-${month}-${day}`;
+    // };
 
     return (
         <div className="form-container">
