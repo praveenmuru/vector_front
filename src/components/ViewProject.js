@@ -32,7 +32,7 @@ const ViewProject = () => {
                 <h2 style={{ textAlign: 'center' }}>Team and Roles</h2>
                 <div className="details">
                     <p><strong>Team Members:</strong></p>
-                    <p>{project.teamMembers.join(', ')}</p>
+                    <p>{project.teamMembers}</p>
                 </div>
                 <div className="details">
                     <p><strong>Roles and Responsibilities:</strong></p>
@@ -44,11 +44,11 @@ const ViewProject = () => {
                 <h2 style={{ textAlign: 'center' }}>Resources</h2>
                 <div className="details">
                     <p><strong>Budget:</strong></p>
-                    <p>{project.budget}</p>
+                    <p>${project.budget}</p>
                 </div>
                 <div className="details">
                     <p><strong>Tools/Technologies:</strong></p>
-                    <p>{project.toolsAndTechnologies.join(', ')}</p>
+                    <p>{project.toolsAndTechnologies}</p>
                 </div>
             </div>
         </div>
