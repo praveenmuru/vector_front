@@ -23,6 +23,7 @@ body,
   color: white;
   padding: 10px;
   z-index: 1000;
+  width: 100%;
 }
 
 .main-content {
