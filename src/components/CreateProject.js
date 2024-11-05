@@ -5,7 +5,7 @@ import { FaUpload } from 'react-icons/fa';
 import CurrencyInput from 'react-currency-input-field';
 import './CreateProject.css';
 
-const CreateProject = ({ updateProject }) => {
+const CreateProject = () => {
     const location = useLocation();
     const { project, isEdit } = location.state || {};
 
@@ -30,10 +30,10 @@ const CreateProject = ({ updateProject }) => {
                 projectManager: project.projectManager || '',
                 startDate: project.startDate || '',
                 endDate: project.endDate || '',
-                teamMembers: project.teamMembers || '',
-                rolesAndResponsibilities: project.rolesAndResponsibilities || '',
+                teamMembers: (project.teamMembers || []),
+                rolesAndResponsibilities: (project.rolesAndResponsibilities || []),
                 budget: parseFloat(project.budget.replace(/[^0-9.-]+/g, "")) || 0,
-                toolsAndTechnologies: project.toolsAndTechnologies || '',
+                toolsAndTechnologies: (project.toolsAndTechnologies || []),
             });
         }
     }, [isEdit, project]);
@@ -43,7 +43,11 @@ const CreateProject = ({ updateProject }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        if (['teamMembers', 'rolesAndResponsibilities', 'toolsAndTechnologies'].includes(name)) {
+            setFormData({ ...formData, [name]: value.split(',').map(item => item.trim()) });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleCurrencyChange = (value, name) => {
@@ -57,16 +61,29 @@ const CreateProject = ({ updateProject }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isEdit) {
-            updateProject(formData);
-        } else {
+            try {
+                const response = await axios.put(`http://localhost:8000/api/projects/${project.id}`, formData, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                });
+                alert('Project updated successfully!');
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error in updating project:', error);
+                alert('Failed to update project');
+            }
+        }
+        else {
             try {
                 const response = await axios.post('http://localhost:8000/api/projects', formData, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-Requested-With': 'XMLHttpRequest',
-                    },
-                    body: JSON.stringify(formData),
+                    }
                 });
                 alert('Project created successfully!');
                 console.log(response.data);
