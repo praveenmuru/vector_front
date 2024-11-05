@@ -94,10 +94,10 @@ const Projects = () => {
                   <td>{project.projectManager}</td>
                   <td>{new Date(project.startDate).toLocaleDateString('en-GB').replace(/\//g, '-')}</td>
                   <td>{new Date(project.endDate).toLocaleDateString('en-GB').replace(/\//g, '-')}</td>
-                  <td>{project.teamMembers}</td>
-                  <td>{project.rolesAndResponsibilities}</td>
+                  <td>{project.teamMembers.join(', ')}</td>
+                  <td>{project.rolesAndResponsibilities.join(', ')}</td>
                   <td>${project.budget}</td>
-                  <td>{project.toolsAndTechnologies}</td>
+                  <td>{project.toolsAndTechnologies.join(', ')}</td>
                   <td>
                     <button className="view" onClick={() => handleViewProject(project)}>
                       View
