@@ -6,6 +6,7 @@ const headerStyle = {
   color: 'white',
   padding: '10px',
   textAlign: 'center',
+  width: '100%'
 };
 
 // Define the Header component

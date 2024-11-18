@@ -50,6 +50,10 @@ const ViewProject = () => {
                     <p><strong>Tools/Technologies:</strong></p>
                     <p>{project.toolsAndTechnologies}</p>
                 </div>
+                <div className="details">
+                    <p><strong>Documentation:</strong></p>
+                    <p>{project.documentation}</p>
+                </div>
             </div>
         </div>
     );

@@ -30,10 +30,11 @@ const CreateProject = () => {
                 projectManager: project.projectManager || '',
                 startDate: project.startDate || '',
                 endDate: project.endDate || '',
-                teamMembers: (project.teamMembers || []),
-                rolesAndResponsibilities: (project.rolesAndResponsibilities || []),
+                teamMembers: JSON.stringify(project.teamMembers || []),
+                rolesAndResponsibilities: JSON.stringify(project.rolesAndResponsibilities || []),
                 budget: parseFloat(project.budget.replace(/[^0-9.-]+/g, "")) || 0,
-                toolsAndTechnologies: (project.toolsAndTechnologies || []),
+                toolsAndTechnologies: JSON.stringify(project.toolsAndTechnologies || []),
+                documentation: JSON.stringify(project.documentation || ''),
             });
         }
     }, [isEdit, project]);
@@ -60,40 +61,48 @@ const CreateProject = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (isEdit) {
-            try {
-                const response = await axios.put(`http://localhost:8000/api/projects/${project.id}`, formData, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                    }
-                });
-                alert('Project updated successfully!');
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error in updating project:', error);
-                alert('Failed to update project');
+
+        const data = new FormData();
+
+        // Append fields to FormData, converting arrays to JSON strings
+        Object.keys(formData).forEach((key) => {
+            if (key === 'teamMembers' || key === 'rolesAndResponsibilities' || key === 'toolsAndTechnologies') {
+                data.append(key, JSON.stringify(formData[key]));  // Convert arrays to JSON strings
+            } else if (key === 'documentation') {
+                // Handle multiple files for 'documentation' if it's an array of files
+                if (Array.isArray(formData[key])) {
+                    formData[key].forEach((file) => data.append(`${key}[]`, file));
+                } else {
+                    data.append(key, formData[key]);
+                }
+            } else {
+                data.append(key, formData[key]);
             }
-        }
-        else {
-            try {
-                const response = await axios.post('http://localhost:8000/api/projects', formData, {
-                    method: 'POST',
+        });
+
+        try {
+            const response = isEdit
+                ? await axios.put(`http://localhost:8000/api/projects/${project.id}`, data, {
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                    }
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                : await axios.post('http://localhost:8000/api/projects', data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
                 });
-                alert('Project created successfully!');
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error creating project:', error);
-                alert('Failed to create project');
-            }
+
+            console.log(response.data);
+            alert(isEdit ? 'Project updated successfully' : 'Project created successfully');
+            navigate('/projects'); // Redirect after successful submission
+        } catch (error) {
+            console.error('Error:', error);
+            alert(isEdit ? 'Failed to update project' : 'Failed to create project');
         }
-        navigate('/projects'); // Redirect to Projects page after submission
     };
+
+
 
     // const formatDate = (dateString) => {
     //     const [day, month, year] = dateString.split('-');
@@ -213,8 +222,9 @@ const CreateProject = () => {
                         type="file"
                         id="documentation"
                         accept=".pdf,.docx,.jpg,.jpeg,.png"
+                        multiple
                         onChange={handleFileChange}
-                        style={{ display: 'none' }} // Hide the default file input
+                        style={{ display: 'none' }}
                     />
                     <button
                         type="button"

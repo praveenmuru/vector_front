@@ -26,19 +26,18 @@ body,
   width: 100%;
 }
 
-.main-content {
-  display: flex;
+/* .main-content {
   flex: 1;
-}
+} */
 
-.sidebar {
+/* .sidebar {
   width: 20%;
   background-color: #006ed7;
   color: white;
   padding: 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 900;
-}
+} */
 
 .content {
   flex: 1;
@@ -48,4 +47,11 @@ body,
 
 .main-content {
   background-color: #ffffff;
+  width: 100%;
+  display: flex;
+
 }
+
+
+
+@media only screen and (min-width:0px)and (max-width:767px) {}
