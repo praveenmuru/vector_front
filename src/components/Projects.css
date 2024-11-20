@@ -1,13 +1,17 @@
 .actions {
-    position: absolute;
-    top: 140px;
-    right: 50px;
-    overflow-x: auto;
+    /* position: absolute; */
+    /* top: 140px; */
+    /* right: 50px; */
+    /* overflow-x: auto; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .actions button {
 
-    padding: 10px 25px;
+    /* padding: 10px 25px; */
     font-family: Poppins, sans-serif;
     font-size: 16px;
     background-color: #006ed7;
@@ -80,4 +84,20 @@ button.delete {
 
 button.delete:hover {
     background-color: #da190b;
+}
+
+.projects {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+@media only screen and (min-width:0px)and (max-width:767px) {
+    .projects {
+        font-size: 15px;
+    }
+
+    .add-button {
+        font-size: 15px !important;
+    }
 }

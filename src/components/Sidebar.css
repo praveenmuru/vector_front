@@ -1,32 +1,60 @@
+@media only screen and (min-width:0px)and (max-width:767px) {
+    .sidebar {
+        font-size: 6px !important;
+
+    }
+
+}
+
 .sidebar {
-    max-width: 10px;
-    background-color: #ffffff;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    top: 120px;
-    left: 10px;
-    position: absolute;
+    padding: 10px;
+    background-color: #f4f4f4;
+    height: 100%;
+    width: 15%;
+    font-weight: 500;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0px;
-}
-
-.sidebar ul li {
-    margin: 7px 0;
-    text-align: left;
-}
-
-.sidebar ul li a {
+.sidebar-link {
+    display: block;
+    padding: 10px;
     text-decoration: none;
-    color: black;
-    padding: 3px;
+    color: #000;
+    margin-bottom: 10px;
 }
 
-.sidebar ul li a:hover {
+.sidebar-hover-dashboard {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
     color: white;
+    margin-bottom: 10px;
+    background-color: #006ed7;
+
+}
+
+.sidebar-hover-projects {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+    background-color: #006ed7;
+}
+
+.sidebar-hover-workboard {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+    background-color: #006ed7;
+}
+
+.sidebar-hover-create-task {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
     background-color: #006ed7;
 }

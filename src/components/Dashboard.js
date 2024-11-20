@@ -59,7 +59,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
-        <h1>Welcome to the Dashboard, {name}!</h1>
+        <h1>Welcome to the Dashboard!, {name}!</h1>
 
         <div className="project-status-grid">
           <div className="metric">

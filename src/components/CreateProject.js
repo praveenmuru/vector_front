@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import { FaUpload } from 'react-icons/fa';
 import CurrencyInput from 'react-currency-input-field';
 import './CreateProject.css';
 
-const CreateProject = ({ addProject, updateProject }) => {
+const CreateProject = () => {
     const location = useLocation();
     const { project, isEdit } = location.state || {};
 
@@ -27,12 +28,13 @@ const CreateProject = ({ addProject, updateProject }) => {
                 projectName: project.projectName || '',
                 description: project.description || '',
                 projectManager: project.projectManager || '',
-                startDate: formatDate(project.startDate) || '',
-                endDate: formatDate(project.endDate) || '',
-                teamMembers: (project.teamMembers || []).join(', '),
-                rolesAndResponsibilities: project.rolesAndResponsibilities || '',
+                startDate: project.startDate || '',
+                endDate: project.endDate || '',
+                teamMembers: JSON.stringify(project.teamMembers || []),
+                rolesAndResponsibilities: JSON.stringify(project.rolesAndResponsibilities || []),
                 budget: parseFloat(project.budget.replace(/[^0-9.-]+/g, "")) || 0,
-                toolsAndTechnologies: (project.toolsAndTechnologies || []).join(', ')
+                toolsAndTechnologies: JSON.stringify(project.toolsAndTechnologies || []),
+                documentation: JSON.stringify(project.documentation || ''),
             });
         }
     }, [isEdit, project]);
@@ -42,7 +44,11 @@ const CreateProject = ({ addProject, updateProject }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        if (['teamMembers', 'rolesAndResponsibilities', 'toolsAndTechnologies'].includes(name)) {
+            setFormData({ ...formData, [name]: value.split(',').map(item => item.trim()) });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleCurrencyChange = (value, name) => {
@@ -53,20 +59,55 @@ const CreateProject = ({ addProject, updateProject }) => {
         setFormData({ ...formData, documentation: e.target.files[0] });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (isEdit) {
-            updateProject(formData);
-        } else {
-            addProject(formData);
+
+        const data = new FormData();
+
+        // Append fields to FormData, converting arrays to JSON strings
+        Object.keys(formData).forEach((key) => {
+            if (key === 'teamMembers' || key === 'rolesAndResponsibilities' || key === 'toolsAndTechnologies') {
+                data.append(key, JSON.stringify(formData[key]));  // Convert arrays to JSON strings
+            } else if (key === 'documentation') {
+                // Handle multiple files for 'documentation' if it's an array of files
+                if (Array.isArray(formData[key])) {
+                    formData[key].forEach((file) => data.append(`${key}[]`, file));
+                } else {
+                    data.append(key, formData[key]);
+                }
+            } else {
+                data.append(key, formData[key]);
+            }
+        });
+
+        try {
+            const response = isEdit
+                ? await axios.put(`http://localhost:8000/api/projects/${project.id}`, data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                : await axios.post('http://localhost:8000/api/projects', data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+            console.log(response.data);
+            alert(isEdit ? 'Project updated successfully' : 'Project created successfully');
+            navigate('/projects'); // Redirect after successful submission
+        } catch (error) {
+            console.error('Error:', error);
+            alert(isEdit ? 'Failed to update project' : 'Failed to create project');
         }
-        navigate('/projects'); // Redirect to Projects page after submission
     };
 
-    const formatDate = (dateString) => {
-        const [day, month, year] = dateString.split('-');
-        return `${year}-${month}-${day}`;
-    };
+
+
+    // const formatDate = (dateString) => {
+    //     const [day, month, year] = dateString.split('-');
+    //     return `${year}-${month}-${day}`;
+    // };
 
     return (
         <div className="form-container">
@@ -141,10 +182,10 @@ const CreateProject = ({ addProject, updateProject }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="rolesResponsibilities">Roles and Responsibilities:</label>
+                    <label htmlFor="rolesAndResponsibilities">Roles and Responsibilities:</label>
                     <textarea
-                        id="rolesResponsibilities"
-                        name="rolesResponsibilities"
+                        id="rolesAndResponsibilities"
+                        name="rolesAndResponsibilities"
                         value={formData.rolesAndResponsibilities}
                         onChange={handleInputChange}
                         required
@@ -165,11 +206,11 @@ const CreateProject = ({ addProject, updateProject }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="toolsTechnologies">Tools/Technologies:</label>
+                    <label htmlFor="toolsAndTechnologies">Tools/Technologies:</label>
                     <input
                         type="text"
-                        id="toolsTechnologies"
-                        name="toolsTechnologies"
+                        id="toolsAndTechnologies"
+                        name="toolsAndTechnologies"
                         value={formData.toolsAndTechnologies}
                         onChange={handleInputChange}
                         required
@@ -180,8 +221,10 @@ const CreateProject = ({ addProject, updateProject }) => {
                     <input
                         type="file"
                         id="documentation"
+                        accept=".pdf,.docx,.jpg,.jpeg,.png"
+                        multiple
                         onChange={handleFileChange}
-                        style={{ display: 'none' }} // Hide the default file input
+                        style={{ display: 'none' }}
                     />
                     <button
                         type="button"
