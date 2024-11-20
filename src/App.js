@@ -40,6 +40,7 @@ const App = () => {
           <Route path="/create-task" element={<CreateTask />} />
         </Routes>
         {/* </div> */}
+
       </div>
       <Footer />
     </div>
