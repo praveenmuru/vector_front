@@ -112,7 +112,7 @@ const Workboard = () => {
     }
     
     const trimmedSummary = trimJson(summary);
-    setDailyTask(trimmedSummary);
+    // setDailyTask(trimmedSummary);
 
 
       setTaskFetched(true); // Set taskFetched to true on success

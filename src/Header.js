@@ -6,8 +6,7 @@ const headerStyle = {
   color: 'white',
   padding: '10px',
   textAlign: 'center',
-  width: '100%'
-
+  width: '100%',
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',

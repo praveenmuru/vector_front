@@ -1,13 +1,10 @@
 /* src/components/CreateTask.css */
 .create-task-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    width: 70%;
 }
 
 .create-task-form {
-    width: 50%;
+    /* width: 50%; */
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 8px;

@@ -1,0 +1,181 @@
+// Browse Category | Focus IRA
+
+// browse-product-wifocus
+
+
+<style>
+     .block-container {
+               width: 100%; 
+    }
+    .block-container .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+      }
+
+    .btns {
+        cursor: pointer;
+        display: inline-block;
+        font-family: Avenir;
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: .2px;
+        line-height: 25%;
+        margin: 0 auto;
+        padding: 17px 30px 14px 30px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: auto;
+    }
+     @media (max-width: 768px) {
+    .btns {
+        white-space: pre-line;
+        word-break: break-word;
+        line-height: 1;
+        box-sizing: border-box;
+        padding: 10px !important;
+    }
+}     
+    a.btns.btn-primary:visited {
+        color: #FFFFFF;
+    }
+    
+    .btn-secondarys {
+        background: #FFFFFF;
+        border: 2px solid #D63827;
+        color: #D63827;
+    }
+    
+    .btn-secondarys:hover {
+        background: #ba462c;
+        border: 2px solid #ba462c;
+        color: #FFFFFF;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+     a:visited {
+      text-decoration: none;
+      color: #D63827;
+    }
+      .block-container .content {
+        flex: 1 1 50%;
+        max-width: 60%;
+        padding: 30px;
+        box-sizing: border-box;
+        background-color: #f0f0f0;
+        height: 362px;
+      }
+      
+      .block-container .image {
+        flex: 1 1 40%;
+        max-width: 40%;
+        box-sizing: border-box;
+        background-color: #ccc;
+        height: 362px;
+    background-image: url('{{media url="wysiwyg/browse-products-focus.png"}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 362px;
+      }
+      .block-container .image img {
+        max-width: 100%;
+        max-height: 100%; 
+        height: 362px;
+        width: 100%;
+      }
+      @media (max-width: 1300px) {
+       .block-container {
+           width: calc(100% - 20px);
+          padding: 10px;
+      }
+       .block-container .container {
+       flex-direction: column-reverse;
+      }
+       .block-container .content {
+           flex: 1 1 50%;
+           max-width: 100%;
+        }
+       .container .image {
+         max-width: 100%;
+         flex: 1 1 100%;
+       }
+        .block-container .container {
+         display: flex;
+         flex-wrap: wrap;
+         margin: 0 auto;
+        }
+      }
+      @media (max-width: 768px) {
+      .block-container {
+          width: calc(100% - 20px);
+          padding: 10px;
+       }
+     .block-container .image img {
+        max-width: 100%;
+        max-height: 100%; 
+        height: auto;
+        width: auto;
+        /*height: 390px;*/
+        /*width: 390px;*/
+      }
+        .block-container .container {
+          flex-direction: column;
+        }
+        
+        .block-container .content,
+        .block-container .image {
+          max-width: 100%;
+          flex: 1 1 100%;
+        }
+      
+        .block-container .image {
+          order: -1; /* Moves the image block above the content block */
+        }
+        .btns {
+         width: 250px !important;
+      }
+
+   .desktop-break {
+          display: block;
+       }
+@media only screen and (max-width: 768px) { 
+    .desktop-break {
+        display: none; 
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 768px) and (min-device-height: 1024px) and (max-device-height: 1024px) {
+   .desktop-break {
+        display: none; 
+    }
+  @media only screen and (min-device-width: 820px) and (max-device-width: 820px) and (min-device-height: 1180px) and (max-device-height: 1180px) {
+       .desktop-break {
+             display: none; 
+        }
+}
+
+@media only screen and (min-device-width: 912px) and (max-device-width: 912px) and (min-device-height: 1368px) and (max-device-height: 1368px) {
+   .desktop-break {
+        display: none; 
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) {
+   .desktop-break {
+        display: none; 
+    }
+  </style>
+<div class="block-container">
+<div class="container">
+<div class="content">
+<h2 style="font-family: Avenir;">IRA Home Energy Rebates</h2>
+<br>
+<p>&nbsp;</p>
+<p style="font-family: Avenir; font-size: 22px; text-align: justify;">View available rebates from Home Efficiency Rebate (HOMES) and Home Electrification and Appliance Rebates (HEAR).</p>
+</div>
+<div class="image"><img style="display: none;" src="{{media url='wysiwyg/browse-products-focus.png'}}" alt="A long, straight road extends into the distance through a small tree-filled community."></div>
+</div>
+</div>

@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/create-project" element={<PrivateRoute userName={userName} component={CreateProject} />} />
           <Route path="/projects/view-project" element={<PrivateRoute userName={userName} component={ViewProject} />} />
           <Route path="/workboard" element={<PrivateRoute userName={userName} component={Workboard} />} />
-          <Route path="/create-task" element={<CreateTask />} />
+          <Route path="/create-task" element={<PrivateRoute userName={userName} component={CreateTask} />} />
         </Routes>
         {/* </div> */}
 
